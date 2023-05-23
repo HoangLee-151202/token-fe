@@ -1,0 +1,17 @@
+version: "3.9"
+services:
+  blameo-hrm:
+    container_name: blameo-hrm
+    build: .
+    ports:
+      - "3000:80"
+
+  nginx:
+    depends_on:
+      - blameo-hrm
+    restart: always
+    build:
+      dockerfile: Dockerfile
+      context: ./
+    ports:
+      - "80:80"
